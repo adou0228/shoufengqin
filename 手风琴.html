@@ -1,0 +1,66 @@
+<html><head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/shoufengqin.css">
+    </head><body>
+        <ul class="accordion clearfix">
+            <li>
+                <p></p>
+                <span>温泉酒店</span>
+            </li>
+            <li>
+                <p></p>
+                <span>情侣酒店</span>
+            </li>
+            <li>
+                <p></p>
+                <span>设计师酒店</span>
+            </li>
+            <li>
+                <p></p>
+                <span>青年旅社</span>
+            </li>
+            <li>
+                <p></p>
+                <span>特色客栈</span>
+            </li>
+            <li>
+                <p></p>
+                <span>海岛酒店</span>
+            </li>
+            <li>
+                <p></p>
+                <span>海外温泉</span>
+            </li>
+        </ul>
+        <script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+            				var $ul = parseInt($('.accordion').width());
+            				var $num = parseInt($(".accordion li").length);
+            				var $width = parseInt($ul / $num);
+            				$(".accordion li").css("width", $width);
+            				$('.accordion li').hover(function() {
+            					$(".accordion li").css("width", $width);
+            					$('.accordion li').stop(true).animate({
+            						width: ($ul - $width * 2) / ($num - 1)
+            					});
+            					$(this).find("span").stop(true).hide();
+            					$(this).find("p").stop(true).hide();
+            					$(this).stop(true).animate({
+            						width: $width * 2
+            					});
+            				}, function() {
+            					$(".accordion li").css("width", $width);
+            					$('.accordion li').stop(true).animate({
+            						width: $width
+            					});
+            					$(this).find("span").stop(true).show();
+            					$(this).find("p").stop(true).show();
+            				})
+            			});
+        </script>
+    
+
+</body></html>

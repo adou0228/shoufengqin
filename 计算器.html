@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf8" />
+		<title></title>
+		<style type="text/css">
+			.box {
+				width: 472px;
+				padding: 10px;
+				border: 1px solid #000;
+				margin: 0 auto;
+			}
+			
+			input {
+				width: 405px;
+				padding: 20px;
+				margin: 0 0 5px 4px;
+				color: #fff;
+				background-color: #000;
+				text-align: right;
+				font-size: 20px;
+			}
+			
+			td {
+				display: inline-block;
+				margin-right: 15px;
+			}
+			
+			button {
+				width: 100px;
+				height: 50px;
+				font-size: 18px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<input id="screenName" value="" />
+			<table>
+				<tr>
+					<td><button id="store" onclick="Store()" value="存储">存储</button></td>
+					<td><button id="read" onclick="Read()" value="取存">取存</button></td>
+					<td><button id="Back" onclick="Back()" value="退格">退格</button></td>
+					<td><button id="C" onclick="clearNum()" value="清屏">清屏</button></td>
+				</tr>
+				<tr>
+					<td><button id="7" onclick="jsq(this.value)" value="7">7</button></td>
+					<td><button id="8" onclick="jsq(this.value)" value="8">8</button></td>
+					<td><button id="9" onclick="jsq(this.value)" value="9">9</button></td>
+					<td><button id="/" onclick="jsq(this.value)" value="/">÷</button></td>
+				</tr>
+				<tr>
+					<td><button id="4" onclick="jsq(this.value)" value="4">4</button></td>
+					<td><button id="5" onclick="jsq(this.value)" value="5">5</button></td>
+					<td><button id="6" onclick="jsq(this.value)" value="6">6</button></td>
+					<td><button id="*" onclick="jsq(this.value)" value="*">×</button></td>
+				</tr>
+				<tr>
+					<td><button id="1" onclick="jsq(this.value)" value="1">1</button></td>
+					<td><button id="2" onclick="jsq(this.value)" value="2">2</button></td>
+					<td><button id="3" onclick="jsq(this.value)" value="3">3</button></td>
+					<td><button id="+" onclick="jsq(this.value)" value="+">+</button></td>
+				</tr>
+				<tr>
+					<td><button id="0" onclick="jsq(this.value)" value="0">0</button></td>
+					<td><button id="." onclick="jsq(this.value)" value=".">.</button></td>
+					<td><button id="eva" onclick="eva()" value="=">=</button></td>
+					<td><button id="-" onclick="jsq(this.value)" value="-">-</button></td>
+				</tr>
+			</table>
+		</div>
+
+	</body>
+	<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$("tr td").css({
+			"background-color": "#000",
+			"border-radius": "3px"
+		});
+		$("tr td:last-child button").css("background-color", "#80563e");
+		$("tr td button").css({
+			"color": "#fff",
+			"border": "none",
+			"outline": "none",
+		});
+		$("tr:eq(0) td button").css("background-color", "#485160");
+		$("tr:eq(1) td:lt(3) button").css("background-color", "#3162a5");
+		$("tr:eq(2) td:lt(3) button").css("background-color", "#3162a5");
+		$("tr:eq(3) td:lt(3) button").css("background-color", "#3162a5");
+		$("tr:eq(4) td:lt(2) button").css("background-color", "#3162a5");
+		$("tr:eq(4) td:eq(2) button").css("background-color", "#d97b01");
+	</script>
+	<script type="text/javascript">
+		var num = 0; 
+		var store = [];
+		function jsq(num) {
+			//获取当前输入
+			document.getElementById('screenName').value += document.getElementById(num).value;
+		    
+		}
+
+		function eva() {
+			//计算输入结果
+			document.getElementById("screenName").value = eval(document.getElementById("screenName").value);
+		}
+
+		function clearNum() {
+			//清0
+			document.getElementById("screenName").value = null;
+			document.getElementById("screenName").focus();
+		}
+
+		function Back() {
+			//退格
+			var arr = document.getElementById("screenName");
+			arr.value = arr.value.substr(0, arr.value.length - 1);
+			document.getElementById("screenName").focus();
+		}
+
+		function Store() {
+			var arr = document.getElementById('screenName').value;
+			store.push(arr);
+			document.getElementById('screenName').value = "";
+		}
+
+		function Read() {
+			var arr = document.getElementById('screenName').value;
+			var i = store.length;
+			document.getElementById('screenName').value += store[i - 1];
+		}
+	</script>
+
+</html>
